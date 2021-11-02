@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { RouteComponentProps } from 'react-router-dom';
 import _isEmpty from 'lodash/isEmpty';
 
 import Card from '@App/library/components/Card';
@@ -7,15 +6,11 @@ import { getBlog } from '@App/services/blogs';
 import { IBlog } from '@App/types/blogs';
 import Wrapper from '@App/library/components/Wrapper';
 
-interface RouteParams {
-  id: string;
+interface IOwnProps {
+  pararmId: number;
 }
 
-interface IOwnProps extends RouteComponentProps<RouteParams> {}
-
-const BlogDetail: React.FC<IOwnProps> = ({ match }) => {
-  const pararmId = Number(match.params.id);
-
+const BlogDetail: React.FC<IOwnProps> = ({ pararmId }) => {
   const [data, setData] = React.useState<IBlog>();
 
   const getBlogById = (id: number) => {
@@ -24,7 +19,7 @@ const BlogDetail: React.FC<IOwnProps> = ({ match }) => {
 
   React.useEffect(() => {
     getBlogById(pararmId);
-  }, [match.params.id]);
+  }, [pararmId]);
 
   return (
     <Wrapper>

@@ -1,15 +1,12 @@
 import * as React from 'react';
-import { connect } from 'react-redux';
 import _isEmpty from 'lodash/isEmpty';
 import _get from 'lodash/get';
+import { Link } from 'react-router-dom';
 
-import { IAppReduxState } from '@App/types/redux';
-import { fetchBlogsRequest } from '@App/store/blogs/actions/actions';
 import { onFetchBlogsRequestActionType } from '@App/store/blogs/reducers/types';
 import { IBlog } from '@App/types/blogs';
 import Media from '@App/library/components/Media';
 import Pagination from '@App/library/components/Pagination';
-import { Link } from 'react-router-dom';
 import InputGroup from '@App/library/components/InputGroup';
 import Select from '@App/library/components/Select';
 import Input from '@App/library/components/Input';
@@ -17,29 +14,12 @@ import Wrapper from '@App/library/components/Wrapper';
 import { blogKeyArr, orderArr } from '@App/data/blogs';
 import { usePrevious } from '@App/helpers/ref';
 
-interface IOwnProps {}
-
-interface IPropsFromState {
+interface IOwnProps {
+  onGetBlogs: onFetchBlogsRequestActionType;
   blogs: IBlog[];
 }
 
-const mapStateToProps = (state: IAppReduxState): IPropsFromState => ({
-  blogs: state.blogs.data,
-});
-
-interface IPropsFromDispatch {
-  fetchBlogsRequest: onFetchBlogsRequestActionType;
-}
-
-const actionsToProps: IPropsFromDispatch = {
-  fetchBlogsRequest: fetchBlogsRequest,
-};
-
-const connector = connect(mapStateToProps, actionsToProps);
-
-type IProps = IPropsFromDispatch & IPropsFromState & IOwnProps;
-
-const Blogs: React.FC<IProps> = ({ fetchBlogsRequest, blogs }) => {
+const Blogs: React.FC<IOwnProps> = ({ onGetBlogs, blogs }) => {
   const limit = 10;
 
   const [activePage, setActivePage] = React.useState<number>(1);
@@ -68,7 +48,7 @@ const Blogs: React.FC<IProps> = ({ fetchBlogsRequest, blogs }) => {
   );
 
   const getBlogs = () => {
-    fetchBlogsRequest({
+    onGetBlogs({
       page: activePage,
       limit: limit,
       sortBy: sortBy,
@@ -138,4 +118,4 @@ const Blogs: React.FC<IProps> = ({ fetchBlogsRequest, blogs }) => {
   );
 };
 
-export default connector(Blogs);
+export default Blogs;

@@ -1,11 +1,11 @@
 import { lazy } from 'react';
 import { IRoute } from '@App/types/routes';
 
-const Home = lazy(() => import('@App/pages'));
+const Home = lazy(() => import('@App/containers'));
 
 // BLOG
-const Blogs = lazy(() => import('@App/pages/blogs'));
-const BlogDetail = lazy(() => import('@App/pages/blogs/detail'));
+const Blogs = lazy(() => import('@App/containers/blogs'));
+const BlogDetail = lazy(() => import('@App/containers/blogs/detail'));
 
 const routes: IRoute[] = [
   {

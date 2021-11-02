@@ -3,7 +3,6 @@ import {
   GET_BLOGS_SUCCESS,
   GET_BLOGS_FAILURE,
 } from '@App/store/blogs/actions/action.types';
-
 import { BlogsActions, BlogsState } from '@App/store/blogs/reducers/types';
 
 const initialState: BlogsState = {
