@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist/",
+    "sourceMap": true,
+    "strict": true,
+    "noImplicitReturns": true,
+    "noImplicitAny": false,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "target": "es5",
+    "allowJs": true,
+    "esModuleInterop": true,
+    "jsx": "react",
+    "baseUrl": ".",
+    "paths": {
+      "@App/*": ["./src/*"]
+    }
+  },
+  "include": ["src/**/*"]
+}
