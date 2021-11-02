@@ -4,8 +4,6 @@ const webpack = require('webpack');
 const path = require('path');
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
-const BundleAnalyzerPlugin =
-  require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const Dotenv = require('dotenv-webpack');
 
@@ -66,10 +64,6 @@ const config = {
     new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /en/),
     new CopyPlugin({
       patterns: [{ from: './index.html' }],
-    }),
-    new BundleAnalyzerPlugin({
-      analyzerMode: 'static',
-      openAnalyzer: false,
     }),
     new MiniCssExtractPlugin(),
     new Dotenv(),
